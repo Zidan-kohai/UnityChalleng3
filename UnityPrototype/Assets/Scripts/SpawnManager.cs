@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject Obstacles;
+    public GameObject[] Obstacles;
     private PlayerController playerController;
     void Start()
     {
@@ -16,7 +16,8 @@ public class SpawnManager : MonoBehaviour
     {
         if (playerController.GameOver == false)
         {
-            Instantiate(Obstacles, new Vector3(30, 0, 0), Quaternion.identity);
+            int rnd = Random.Range(0, Obstacles.Length);
+            Instantiate(Obstacles[rnd], new Vector3(30, 0, 0), Quaternion.identity);
         }
 
     }

@@ -17,8 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip _crashSound;
     private AudioSource _audioSource;
 
-    [HideInInspector] public bool GameOver;
+    public bool GameOver;
     private bool _isOnGround = true;
+    public int AmountJump;
     private Rigidbody _playerRb;
     private Animator _playerAnim;
 
@@ -33,30 +34,39 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && _isOnGround && !GameOver)
+        if(Input.GetKeyDown(KeyCode.Space) && !GameOver)
         {
-            _playerRb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _isOnGround = false;
-            _playerAnim.SetTrigger("Jump_trig");
-            _dirtParticle.Stop();
-            _audioSource.PlayOneShot(_jumpSound);
+            if (_isOnGround || AmountJump < 2)
+            {
+                AmountJump++;
+                _playerRb.AddForce(Vector3.up * (_jumpForce / AmountJump), ForceMode.Impulse);
+                _isOnGround = false;
+                _playerAnim.SetTrigger("Jump_trig");
+                _dirtParticle.Stop();
+                _audioSource.PlayOneShot(_jumpSound);
+            }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (!GameOver)
         {
-            _isOnGround = true;
-            _dirtParticle.Play();
-        }else if(collision.gameObject.CompareTag("Obstacle"))
-        {
-            GameOver = true;
-            _playerAnim.SetBool("Death_b", true);
-            _playerAnim.SetInteger("DeathType_int", 1);
-            _explosionParticle.Play();
-            _dirtParticle.Stop();
-            _audioSource.PlayOneShot(_crashSound);
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                _isOnGround = true;
+                AmountJump = 0;
+                _dirtParticle.Play();
+            }
+            else if (collision.gameObject.CompareTag("Obstacle"))
+            {
+                GameOver = true;
+                _playerAnim.SetBool("Death_b", true);
+                _playerAnim.SetInteger("DeathType_int", 1);
+                _explosionParticle.Play();
+                _dirtParticle.Stop();
+                _audioSource.PlayOneShot(_crashSound);
+            }
         }
 
     }
