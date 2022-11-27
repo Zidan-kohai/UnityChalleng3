@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.U2D;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class MoveLeft : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _leftBound;
     private PlayerController _controller;
+
+    public float Speed { get { return _speed; } set { _speed = value; } }
     void Start()
     {
         _controller = GameObject.Find("Player").GetComponent<PlayerController>();

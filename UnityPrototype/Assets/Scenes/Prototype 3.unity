@@ -549,7 +549,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &835818922
 MonoBehaviour:
@@ -685,11 +685,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -775,13 +775,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f54ef4813c6a024fb39025d2b8de910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 700
+  _jumpForce: 580
   _gravityModifier: 1.5
   _explosionParticle: {fileID: 1243299410}
   _dirtParticle: {fileID: 661036967}
   _jumpSound: {fileID: 8300000, guid: 113ee460fadc340e4957a7404a9fbb27, type: 3}
   _crashSound: {fileID: 8300000, guid: 913d6445ee8cc4152a9c18da590ee203, type: 3}
+  Bg: {fileID: 835818922}
+  Score: 0
   GameOver: 0
+  AmountJump: 0
 --- !u!4 &1233230185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
@@ -883,6 +886,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1233230187 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
+  m_PrefabInstance: {fileID: 1102178916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!320 &1233230188
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233230178}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 0ce95670b33fc164cb792272e32c3b84, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 2914672916316523246, guid: 0ce95670b33fc164cb792272e32c3b84, type: 2}
+    value: {fileID: 1233230187}
+  - key: {fileID: -5267956696122119186, guid: 0ce95670b33fc164cb792272e32c3b84, type: 2}
+    value: {fileID: 1233230187}
+  m_ExposedReferences:
+    m_References: []
 --- !u!198 &1243299410 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 9125212449759046732, guid: cb7cd9b0c56a24d49a40784bd3203ae6, type: 3}
@@ -917,7 +946,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d07df2aba4afa746a168237fc4952c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obstacles: {fileID: 2248634591519939446, guid: 7adc2d6d86d085d4aa118da881630c85, type: 3}
+  Obstacles:
+  - {fileID: 6027069528737418673, guid: de79bdbb3ade6c04bad40e3cece92018, type: 3}
+  - {fileID: 2248634591519939446, guid: 7adc2d6d86d085d4aa118da881630c85, type: 3}
+  - {fileID: 9115776696217645052, guid: a9a771aece8f05f4da685621b9e02dcd, type: 3}
+  - {fileID: 1767099731241154085, guid: 548489c205770304e91ecf01ae66f7d5, type: 3}
 --- !u!4 &1853881980
 Transform:
   m_ObjectHideFlags: 0
